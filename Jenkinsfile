@@ -1,20 +1,17 @@
 node {
 def mvnHome = tool 'maven-3.8.2'
 def image
-   //1//  stage ('checkout') {
+     stage ('checkout') {
        git 'https://github.com/nithish407/myfirstapp.git'
         }
    
- //2//   stage ('Build') {
-       // def mvnHome = tool name: 'maven', type: 'maven'    
+   stage ('Build') {  
          mvnHome = tool 'maven-3.8.2' 
-        // def mvnCMD = "${mvnHome}/bin/mvn "
-        // sh "${mvnCMD} clean package"  
          sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean package"
         }
        
        
-   //3// stage ('Docker Build') {
+   stage ('Docker Build') {
          
             docker.build('springboot')
         }
