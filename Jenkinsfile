@@ -20,6 +20,7 @@ def image
                echo "uploading to docker ECR" 
                sh 'docker tag springboot:latest 910130889522.dkr.ecr.us-east-1.amazonaws.com/springboot:latest'
                sh 'docker push 910130889522.dkr.ecr.us-east-1.amazonaws.com/springboot:latest'
+               sh 'aws ecs update-service --cluster Fargate-Network-Stack-ECSCluster-MmTSxmBtavU4 --service springboot--task-definition springboot:3 --desired-count 1 --force-new-deployment'
         
      }
 
