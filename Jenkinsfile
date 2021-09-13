@@ -8,8 +8,9 @@ def image
  //2//   stage ('Build') {
        // def mvnHome = tool name: 'maven', type: 'maven'    
          mvnHome = tool 'maven-3.8.2' 
-         def mvnCMD = "${mvnHome}/bin/mvn "
-         sh "${mvnCMD} clean package"           
+        // def mvnCMD = "${mvnHome}/bin/mvn "
+        // sh "${mvnCMD} clean package"  
+         sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean package"
         }
        
        
