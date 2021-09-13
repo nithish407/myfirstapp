@@ -15,10 +15,13 @@ def image
          
             docker.build('springboot')
         }
- //4// stage ('Docker push')
-    sh 'docker tag springboot:latest 910130889522.dkr.ecr.us-east-1.amazonaws.com/springboot:latest'
-    sh 'docker push 910130889522.dkr.ecr.us-east-1.amazonaws.com/springboot:latest'
+     stage ('uploading to ecr') {
+          steps {
+               echo "uploading to docker ECR" 
+               sh 'docker tag springboot:latest 910130889522.dkr.ecr.us-east-1.amazonaws.com/springboot:latest'
+               sh 'docker push 910130889522.dkr.ecr.us-east-1.amazonaws.com/springboot:latest'
         }
+     }
 
 
 }
