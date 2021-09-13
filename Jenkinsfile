@@ -16,8 +16,8 @@ def image
             docker.build('springboot')
         }
  //4// stage ('Docker push')
-    docker.withRegistry('https://<accountno>.dkr.ecr.ap-south-1.amazonaws.com', 'ecr:ap-south-1:test-ecr') {
-    docker.image('springboot').push('latest')
+    sh 'docker tag springboot:latest 910130889522.dkr.ecr.us-east-1.amazonaws.com/springboot:latest'
+    sh 'docker push 910130889522.dkr.ecr.us-east-1.amazonaws.com/springboot:latest'
         }
 
 
